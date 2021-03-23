@@ -1,13 +1,14 @@
 1. Interfejs użytkownika
    - Informacja o działaniu programu
    - Menu
-     - Pobieranie wartości (rozm. tablicy) od użytkowanika
-       - Liczba wierszy: liczba kolumn:
-     - Edycja wartości w tablicy
-       - nr wiersza: nr tablicy:
-     - Możliwaść wyświetlania tablicy
+     - Utwórz nowy arkusz
+       - Pobieranie wartości (rozm. tablicy) od użytkowanika
+         - Liczba wierszy: liczba kolumn:
+       - Edycja wartości w tablicy
+         - nr wiersza: nr tablicy:
+       - Możliwaść wyświetlania tablicy
      - Zapis danych do pliku
-       - Informacja o błędnym lub poprawnym zapisie danych
+       - Informacja o poprawnym lub błędnym zapisie danych
 
 2. Funkcje
    - Program uruchamiający
@@ -22,6 +23,8 @@
          - nr wiersza: nr kolumny:
      - tablica_wysw.cpp
        - Funkcja wyświetlająca zawartość tablicy
-     - manu.cpp
+     - menu.cpp
        - wybór działania
-       - interakcja z uzytkownikiem
+       - interakcja z użytkownikiem
+       - zapis danych na dysk użytkownika
+         - wyświetl informacje o poprawnym lub błędnym zapisie danych

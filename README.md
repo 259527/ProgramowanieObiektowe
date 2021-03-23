@@ -6,6 +6,8 @@
      - Edycja wartości w tablicy
        - nr wiersza: nr tablicy:
      - Możliwaść wyświetlania tablicy
+     - Zapis danych do pliku
+       - Informacja o błędnym lub poprawnym zapisie danych
 
 2. Funkcje
    - Program uruchamiający

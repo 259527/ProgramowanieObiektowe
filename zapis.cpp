@@ -1,9 +1,6 @@
 #include <iostream>
-#include zapis.h
+#include "zapis.h"
 
 using namespace std;
 
-int main()
-{
-    
-}
+

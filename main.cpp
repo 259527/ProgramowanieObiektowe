@@ -1,12 +1,15 @@
 #include <iostream>
 #include "menu.h"
+#include "pliki.h"
+#include "tablica.h"
+
 using namespace std;
 
 int main()
 
 {
-    drukuj_menu();
-    zapisz_tablice();
+    
+     menu();
 
 return 0;
 }

@@ -8,10 +8,10 @@ using namespace std;
 void zapiszPlik(int ** tablica, int rozmiarX, int rozmiarY, string nazwa)
 {
     ofstream plik(nazwa);
-    if(plik.good)
+    if(plik.good())
         {
-         plik << rozmiarX << endl;
          plik << rozmiarY << endl;
+         plik << rozmiarX << endl;
 
          for(int y = 0; y < rozmiarY; y++)
             {

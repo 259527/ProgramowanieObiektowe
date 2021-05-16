@@ -1,18 +1,19 @@
 ///@file
+#pragma once
 
 /**
 * \brief Funkcja kontrolująca działanie programu
 *
 * Funkcja zajmująca się obsługą menu i zarządzaniem tym co będzie wywoływane
 */
-void wypiszMenu();
+void wypiszmenu();
 
 /**
 * \brief Funkcja tworząca menu.
 *
 *Funkcja tworząca listę pozycji menu
 */
-void stworzMenu();
+void menu();
 
 /**
 * \brief Funkcja tworząca nową tablicę
@@ -35,6 +36,8 @@ int ** stworzArkusz(int* rozmiarX, int* rozmiarY);
 * @param rozmiarX [in,out] parametr zawiera szerokość arkusza modyfikowanego, parametr jest * modyfikowany i zawiera nową szerokość
 * @param rozmiarY [in,out] parametr zawiera wysokośc arkusza modyfikowanego, parametr jest * modyfikowany i zawiera nową wysokość
 */
-void rozszerzArkusz(int *** tablica, int * rozmiarX, int * rozmiarY;
+void rozszerzArkusz(int *** tablica, int * rozmiarX, int * rozmiarY);
+
+
 
 

@@ -35,10 +35,14 @@ void rozszerzTablice(int *** tablica, int * rozmiarX, int * rozmiarY, int nowyro
 
 int ** stworzTablice(int * rozmiarX, int * rozmiarY)
 {
-    int ** tablica = new int*[rozmiarY];
+
+    int ** tablica = new int* [*rozmiarY];
 
     int licznik = *rozmiarY;
-
+    for(int i = 0; i < licznik; i++){
+        tablica[i] = new int [*rozmiarX];
+    }
+    return tablica;
 }
 
 void modWartosc(int ** tablica, int x, int y, int n)

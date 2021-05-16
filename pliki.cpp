@@ -5,21 +5,21 @@
 #include "tablica.h"
 using namespace std;
 
-void zapiszPlik(int ** tablica, int rozmiarX, int rozmiarY, string nazwa)
+void zapiszPlik(arkusz Arkusz, string nazwa)
 {
     ofstream plik(nazwa);
     if(plik.good())
         {
-         plik << rozmiarY << endl;
-         plik << rozmiarX << endl;
+         plik << Arkusz.rozY << endl;
+         plik << Arkusz.rozX << endl;
 
-         for(int y = 0; y < rozmiarY; y++)
+         for(int y = 0; y < Arkusz.rozY; y++)
             {
-             for(int x = 0; x < rozmiarX; x++)
+             for(int x = 0; x < Arkusz.rozX; x++)
                 {
-                 plik << tablica[y][x] << (x < rozmiarX - 1 ? ", " : "");
+                 plik << Arkusz.tablica[y][x] << (x < Arkusz.rozX - 1 ? ", " : "");
                 }
-                if (y < rozmiarY - 1)
+                if (y < Arkusz.rozY - 1)
                     {
                      plik << endl;
                     }
@@ -30,26 +30,31 @@ void zapiszPlik(int ** tablica, int rozmiarX, int rozmiarY, string nazwa)
 }
 
 
-int ** wczytajPlik(int * rozmiarX, int * rozmiarY, string nazwa)
+int wczytajPlik(arkusz *Arkusz, string nazwa)
 {
     ifstream plik(nazwa);
     int ** tablica = nullptr;
     if(plik.good())
         {
-         plik >> *rozmiarY;
-         plik >> *rozmiarX;
+            int rozmiarX, rozmiarY;
+         plik >> rozmiarY;
+         plik >> rozmiarX;
          tablica = stworzTablice(rozmiarX, rozmiarY);
-         for(int y = 0; y < *rozmiarY; y++)
+         for(int y = 0; y < rozmiarY; y++)
             {
-             for(int x = 0; x < (*rozmiarX) - 1; x++)
+             for(int x = 0; x < (rozmiarX) - 1; x++)
                 {
                  string wartosc;
                  getline(plik, wartosc, ',');
                  tablica[y][x] = stoi(wartosc);
                 }
-                plik >> tablica[y][(*rozmiarX) - 1];
+                plik >> tablica[y][(rozmiarX) - 1];
             }
+            Arkusz->tablica = tablica;
+            Arkusz->rozX = rozmiarX;
+            Arkusz->rozY= rozmiarY;
+        return 0;
         }
-        return tablica;
+        return 1;
 }
 

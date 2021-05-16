@@ -25,7 +25,7 @@ void menu();
 * @param rozmiarY [out] wartość wysokości nowej tablicy
 * @return Tablice do wykorzystania w arkuszu
 **/
-int ** stworzArkusz(int* rozmiarX, int* rozmiarY);
+
 
 /**
 * \brief Funkcja modyfikująca rozmiar arkusza
@@ -36,7 +36,7 @@ int ** stworzArkusz(int* rozmiarX, int* rozmiarY);
 * @param rozmiarX [in,out] parametr zawiera szerokość arkusza modyfikowanego, parametr jest * modyfikowany i zawiera nową szerokość
 * @param rozmiarY [in,out] parametr zawiera wysokośc arkusza modyfikowanego, parametr jest * modyfikowany i zawiera nową wysokość
 */
-void rozszerzArkusz(int *** tablica, int * rozmiarX, int * rozmiarY);
+
 
 
 

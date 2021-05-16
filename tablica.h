@@ -1,6 +1,13 @@
 ///@file
 #pragma once
 
+struct arkusz{
+    int **tablica;
+    int rozX;
+    int rozY;
+
+};
+
 /**
 * \brief Interfejs uzytkownika wprowadzania nowej wartości
 *
@@ -25,7 +32,7 @@ void wprowadzWartosc(int** tablica, int rozX, int rozY);
 * @param[in] nowyrozX nowa szerokość tablicy
 * @param[in] nowyrozY nowa wysokość tablicy
 */
-void rozszerzTablice(int*** tablica, int* rozmiarX, int* rozmiarY,int nowyrozX, int nowyrozY);
+int rozszerzTablice(arkusz *Arkusz, int nowyrozX, int nowyrozY);
 
 /**
 * \brief Tworzy nową tablicę (dwuwymiarową)
@@ -36,7 +43,9 @@ void rozszerzTablice(int*** tablica, int* rozmiarX, int* rozmiarY,int nowyrozX, 
 * @param[in] rozmiarY wysokość nowej tablicy
 * @return Nowa tablica
 */
-int ** stworzTablice(int* rozmiarX, int*rozmiarY);
+int** stworzTablice(int rozX, int rozY);
+
+int stworzArkusz(int rozmiarX, int rozmiarY, arkusz *tablica);
 
 /**
 *\brief Wstawia wartość do komórki w tablicy
@@ -49,7 +58,6 @@ int ** stworzTablice(int* rozmiarX, int*rozmiarY);
 * @param[in] y wiersz
 * @param[in] n wartość
 */
-void modWartosc(int** tablica, int x, int y, int n);
-
+int modWartosc(arkusz *Arkusz, int x, int y, int n);
 
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "tablica.h"
 /**
 * \brief Podgląd tablicy.
 *
@@ -8,4 +9,10 @@
 * @param[in] rozX pobiera szerokość tablicy
 * @param[in] rozY pobiera wysokość tablicy
 */
-void wyswietlTablice(int ** tab, int rozX, int rozY);
+void wyswietlTablice(arkusz Arkusz);
+
+void wypiszParWierszy(arkusz Arkusz);
+
+void wypiszParKolumn(arkusz Arkusz);
+
+void wypiszParametry(arkusz Arkusz);

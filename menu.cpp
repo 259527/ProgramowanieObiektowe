@@ -13,7 +13,8 @@ void wypiszmenu()
     cout << "4. Wczytaj tablice \n";
     cout << "5. Zapisz tablice \n";
     cout << "6. Modyfikacja wartości \n";
-    cout << "7. Wyjście z programu \n";
+    cout << "7. Wypisz prametry tablicy \n";
+    cout << "8. Wyjście z programu \n";
 }
 
 void menu()
@@ -21,6 +22,7 @@ void menu()
     int **tablica;
     int x;
     int y;
+    arkusz Arkusz;
     for (;;)
     {
         wypiszmenu();
@@ -34,22 +36,28 @@ void menu()
             cin >> x;
             cout << "Wpisz ile chcesz wierszy";
             cin >> y;
-            tablica = stworzTablice(&x, &y);
+            if (stworzArkusz(x, y, &Arkusz))
+            {
+                cout << "Nie poprawny rozmiar tablicy";
+            }
             break;
         case 2:
-            wyswietlTablice(tablica, x, y);
+            wyswietlTablice(Arkusz);
             break;
         case 3:
             int nowX, nowY;
             cout << "Wprowadz nowy rozmiar X i nowy rozmiar Y";
             cin >> nowX >> nowY;
-            rozszerzTablice(&tablica, &x, &y, nowX, nowY);
+            if (rozszerzTablice(&Arkusz, nowX, nowY))
+            {
+                cout << "Nie poprawny rozmiar tablicy";
+            }
             break;
         case 4:
-            tablica = wczytajPlik(&x, &y);
+            wczytajPlik(&Arkusz);
             break;
         case 5:
-            zapiszPlik(tablica, x, y);
+            zapiszPlik(Arkusz);
             break;
         case 6:
             int selX, selY;
@@ -57,20 +65,22 @@ void menu()
             cin >> selX;
             cout << "Podaj który wiersz chcesz zmienić";
             cin >> selY;
-            if (selX < x && selX >= 0)
+
+            cout << "Podaj wartość";
+            int wart;
+            cin >> wart;
+            if (modWartosc(&Arkusz, selX, selY, wart))
             {
-                if (selY < y && selY >= 0)
-                {
-
-                    cout << "Podaj wartość";
-                    int wart;
-                    cin >> wart;
-                    modWartosc(tablica, selX, selY, wart);
-
-                }
+                cout << "Wybrano element spoza rozmiaru tablicy";
             }
+
             break;
             case 7:
+
+            wypiszParametry(Arkusz);
+            break;
+
+            case 8:
             exit(0);
             break;
         }

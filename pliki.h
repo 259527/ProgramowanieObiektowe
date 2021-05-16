@@ -1,5 +1,6 @@
 ///@file
 #pragma once
+#include "tablica.h"
 using namespace std;
 
 /**
@@ -10,7 +11,7 @@ using namespace std;
 * @param[in] rozmiarY wysokość tablicy zapisywanej
 * @param[in] nazwa nazwa zapisanego pliku
 */
-void zapiszPlik(int ** tablica, int rozmiarX, int rozmiarY, string nazwa ="Arkusz.csv");
+void zapiszPlik(arkusz Arkusz, string nazwa="Arkusz.csv");
 
 /**
 * \brief Funkcja wczytująca dane z pliku.
@@ -20,6 +21,6 @@ void zapiszPlik(int ** tablica, int rozmiarX, int rozmiarY, string nazwa ="Arkus
 * @param[in] nazwa nazwa pliku który chcemy wczytać
 * @return zwraca wczytaną tablicę
 */
-int ** wczytajPlik(int * rozmiarX, int* rozmiarY, string nazwa ="Arkusz.csv");
+int wczytajPlik(arkusz *Arkusz, string nazwa="Arkusz.csv");
 
 

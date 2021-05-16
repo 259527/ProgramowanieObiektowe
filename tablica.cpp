@@ -2,52 +2,73 @@
 
 #include "tablica.h"
 
-void rozszerzTablice(int *** tablica, int * rozmiarX, int * rozmiarY, int nowyrozX, int nowyrozY)
+int rozszerzTablice(arkusz *Arkusz, int nowyrozX, int nowyrozY)
 {
- if(*rozmiarX > nowyrozX)
+    if (nowyrozX > 0 && nowyrozY > 0)
     {
-    *rozmiarX = nowyrozX;    
-    }
- if(*rozmiarY > nowyrozY)
-    {
-    *rozmiarY = nowyrozY;    
-    }
-
- int ** nowaTablica = stworzTablice(&nowyrozX, &nowyrozY);
-
-    for(int y = 0; y < *rozmiarY; y++)
-    {
-        for(int x = 0; x < *rozmiarX; x++)
+        if (Arkusz->rozX > nowyrozX)
         {
-            nowaTablica[y][x] = (*tablica)[y][x];
-    
+            Arkusz->rozX = nowyrozX;
         }
-        delete [] (*tablica)[y];
+        if (Arkusz->rozY > nowyrozY)
+        {
+            Arkusz->rozY = nowyrozY;
+        }
+
+        int **nowaTablica = stworzTablice(nowyrozX, nowyrozY);
+
+        for (int y = 0; y < Arkusz->rozY; y++)
+        {
+            for (int x = 0; x < Arkusz->rozX; x++)
+            {
+                nowaTablica[y][x] = (Arkusz->tablica)[y][x];
+            }
+            delete[](Arkusz->tablica)[y];
+        }
+
+        delete[](Arkusz->tablica);
+
+        Arkusz->tablica = nowaTablica;
+        Arkusz->rozX = nowyrozX;
+        Arkusz->rozY = nowyrozY;
+        return 0;
     }
-
-    delete [](*tablica);
-
-    *tablica = nowaTablica;
-    *rozmiarX = nowyrozX;
-    *rozmiarY = nowyrozY;
-
+    return 1;
 }
 
-int ** stworzTablice(int * rozmiarX, int * rozmiarY)
+int stworzArkusz(int rozmiarX, int rozmiarY, arkusz *tablica)
 {
+    if (rozmiarX > 0 && rozmiarY > 0)
+    {
 
-    int ** tablica = new int* [*rozmiarY];
-
-    int licznik = *rozmiarY;
-    for(int i = 0; i < licznik; i++){
-        tablica[i] = new int [*rozmiarX];
+        tablica->rozX = rozmiarX;
+        tablica->rozY = rozmiarY;
+        tablica->tablica = stworzTablice(rozmiarX, rozmiarY);
+        return 0;
     }
-    return tablica;
+    else
+        return 1;
 }
-
-void modWartosc(int ** tablica, int x, int y, int n)
+int **stworzTablice(int rozX, int rozY)
 {
-    tablica[y][x] = n;
+    int **nowatablica = new int *[rozY];
+
+    int licznik = rozY;
+    for (int i = 0; i < licznik; i++)
+    {
+        nowatablica[i] = new int[rozX];
+    }
+    return nowatablica;
 }
 
+int modWartosc(arkusz *Arkusz, int x, int y, int n)
+{
+    if(x >= 0 && y >= 0){
+        if(x < Arkusz->rozX && y < Arkusz->rozY){
 
+        Arkusz->tablica[y][x] = n;
+        return 0;
+        }
+    }
+    return 1;
+}

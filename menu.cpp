@@ -48,7 +48,7 @@ void menu()
             int nowX, nowY;
             cout << "Wprowadz nowy rozmiar X i nowy rozmiar Y";
             cin >> nowX >> nowY;
-            if (rozszerzTablice(&Arkusz, nowX, nowY))
+            if (Arkusz.rozszerzTablice(nowX, nowY))
             {
                 cout << "Nie poprawny rozmiar tablicy";
             }
@@ -69,7 +69,7 @@ void menu()
             cout << "Podaj wartość";
             int wart;
             cin >> wart;
-            if (modWartosc(&Arkusz, selX, selY, wart))
+            if (Arkusz.modWartosc(selX, selY, wart))
             {
                 cout << "Wybrano element spoza rozmiaru tablicy";
             }

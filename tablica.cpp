@@ -2,48 +2,54 @@
 
 #include "tablica.h"
 
-int rozszerzTablice(arkusz *Arkusz, int nowyrozX, int nowyrozY)
+int arkusz::rozszerzTablice(int nowyrozX, int nowyrozY)
 {
     if (nowyrozX > 0 && nowyrozY > 0)
     {
-        if (Arkusz->rozX > nowyrozX)
+        if (rozX > nowyrozX)
         {
-            Arkusz->rozX = nowyrozX;
+            rozX = nowyrozX;
         }
-        if (Arkusz->rozY > nowyrozY)
+        if (rozY > nowyrozY)
         {
-            Arkusz->rozY = nowyrozY;
+            rozY = nowyrozY;
         }
 
         int **nowaTablica = stworzTablice(nowyrozX, nowyrozY);
 
-        for (int y = 0; y < Arkusz->rozY; y++)
+        for (int y = 0; y < rozY; y++)
         {
-            for (int x = 0; x < Arkusz->rozX; x++)
+            for (int x = 0; x < rozX; x++)
             {
-                nowaTablica[y][x] = (Arkusz->tablica)[y][x];
+                nowaTablica[y][x] = (tablica)[y][x];
             }
-            delete[](Arkusz->tablica)[y];
+            delete[](tablica)[y];
         }
 
-        delete[](Arkusz->tablica);
+        delete[](tablica);
 
-        Arkusz->tablica = nowaTablica;
-        Arkusz->rozX = nowyrozX;
-        Arkusz->rozY = nowyrozY;
+        tablica = nowaTablica;
+        rozX = nowyrozX;
+        rozY = nowyrozY;
         return 0;
     }
     return 1;
 }
 
+arkusz::arkusz(int x, int y)
+{
+
+    rozX = x;
+    rozY = y;
+    tablica = stworzTablice(x, y);
+}
 int stworzArkusz(int rozmiarX, int rozmiarY, arkusz *tablica)
 {
     if (rozmiarX > 0 && rozmiarY > 0)
     {
 
-        tablica->rozX = rozmiarX;
-        tablica->rozY = rozmiarY;
-        tablica->tablica = stworzTablice(rozmiarX, rozmiarY);
+        arkusz nowaTablica(rozmiarX, rozmiarY);
+        *tablica = nowaTablica;
         return 0;
     }
     else
@@ -61,14 +67,30 @@ int **stworzTablice(int rozX, int rozY)
     return nowatablica;
 }
 
-int modWartosc(arkusz *Arkusz, int x, int y, int n)
+int arkusz::modWartosc(int x, int y, int n)
 {
-    if(x >= 0 && y >= 0){
-        if(x < Arkusz->rozX && y < Arkusz->rozY){
+    if (x >= 0 && y >= 0)
+    {
+        if (x < rozX && y < rozY)
+        {
 
-        Arkusz->tablica[y][x] = n;
-        return 0;
+            tablica[y][x] = n;
+            return 0;
         }
     }
     return 1;
+}
+int arkusz::zwrocWartosc(int x, int y)
+{
+
+    return tablica[y][x];
+}
+
+int arkusz::zwrocRozX()
+{
+    return rozX;
+}
+int arkusz::zwrocRozY()
+{
+    return rozY;
 }

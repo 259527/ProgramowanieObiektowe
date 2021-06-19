@@ -12,7 +12,11 @@ void zapiszPlik(arkusz Arkusz, string nazwa)
     {
         plik << Arkusz.zwrocRozY() << endl;
         plik << Arkusz.zwrocRozX() << endl;
-
+        for (int i = 0; i < Arkusz.zwrocRozX(); i++)
+        {
+            plik << Arkusz.zwrocTyp(i) << "\t";
+        }
+        plik << endl;
         for (int y = 0; y < Arkusz.zwrocRozY(); y++)
         {
             for (int x = 0; x < Arkusz.zwrocRozX(); x++)
@@ -30,22 +34,27 @@ void zapiszPlik(arkusz Arkusz, string nazwa)
 int wczytajPlik(arkusz *Arkusz, string nazwa)
 {
     ifstream plik(nazwa);
-    int **tablica = nullptr;
     if (plik.good())
     {
         int rozmiarX, rozmiarY;
         plik >> rozmiarY;
         plik >> rozmiarX;
-        arkusz nowyArkusz(rozmiarX, rozmiarY);
+        bool *typy = new bool[rozmiarX];
+        for (int i = 0; i < rozmiarX; i++)
+        {
+            plik >> typy[i];
+        }
+        arkusz nowyArkusz(rozmiarX, rozmiarY, typy);
         for (int y = 0; y < rozmiarY; y++)
         {
+                string wartosc;
             for (int x = 0; x < (rozmiarX)-1; x++)
             {
-                string wartosc;
                 getline(plik, wartosc, ',');
-                nowyArkusz.modWartosc(x, y, stoi(wartosc));
+                nowyArkusz.modWartosc(x, y, (wartosc));
             }
-            plik >> tablica[y][(rozmiarX)-1];
+           getline(plik, wartosc, '\n');
+                nowyArkusz.modWartosc(rozmiarX -1, y, (wartosc)); 
         }
         *Arkusz = nowyArkusz;
         return 0;

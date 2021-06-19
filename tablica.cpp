@@ -14,8 +14,19 @@ int arkusz::rozszerzTablice(int nowyrozX, int nowyrozY)
         {
             rozY = nowyrozY;
         }
-
-        int **nowaTablica = stworzTablice(nowyrozX, nowyrozY);
+        bool *noweTypy = new bool[nowyrozX];
+        for (int i = 0; i < nowyrozX; i++)
+        {
+            if (i < rozX)
+            {
+                noweTypy[i] = typy[i];
+            }
+            else
+            {
+                noweTypy[i] = false;
+            }
+        }
+        Cell ***nowaTablica = stworzTablice(nowyrozX, nowyrozY, noweTypy);
 
         for (int y = 0; y < rozY; y++)
         {
@@ -36,54 +47,67 @@ int arkusz::rozszerzTablice(int nowyrozX, int nowyrozY)
     return 1;
 }
 
-arkusz::arkusz(int x, int y)
+arkusz::arkusz(int x, int y, bool *typy)
 {
 
     rozX = x;
     rozY = y;
-    tablica = stworzTablice(x, y);
+    this->typy = typy;
+    tablica = stworzTablice(x, y, typy);
 }
-int stworzArkusz(int rozmiarX, int rozmiarY, arkusz *tablica)
+int stworzArkusz(int rozmiarX, int rozmiarY, arkusz *tablica, bool *typy)
 {
     if (rozmiarX > 0 && rozmiarY > 0)
     {
 
-        arkusz nowaTablica(rozmiarX, rozmiarY);
+        arkusz nowaTablica(rozmiarX, rozmiarY, typy);
         *tablica = nowaTablica;
         return 0;
     }
     else
         return 1;
 }
-int **stworzTablice(int rozX, int rozY)
+Cell ***stworzTablice(int rozX, int rozY, bool *typy)
 {
-    int **nowatablica = new int *[rozY];
 
-    int licznik = rozY;
-    for (int i = 0; i < licznik; i++)
+    Cell ***nowaTablica = new Cell **[rozY];
+
+    for (int i = 0; i < rozY; i++)
     {
-        nowatablica[i] = new int[rozX];
+        nowaTablica[i] = new Cell *[rozX];
+        for (int j = 0; j < rozX; j++)
+        {
+            if (typy[j])
+            {
+                nowaTablica[i][j] = new intCell();
+            }
+            else
+            {
+                nowaTablica[i][j] = new stringCell();
+            }
+        }
     }
-    return nowatablica;
+
+    return nowaTablica;
 }
 
-int arkusz::modWartosc(int x, int y, int n)
+int arkusz::modWartosc(int x, int y, std::string n)
 {
     if (x >= 0 && y >= 0)
     {
         if (x < rozX && y < rozY)
         {
 
-            tablica[y][x] = n;
+            tablica[y][x]->ustaw(n);
             return 0;
         }
     }
     return 1;
 }
-int arkusz::zwrocWartosc(int x, int y)
+std::string arkusz::zwrocWartosc(int x, int y)
 {
 
-    return tablica[y][x];
+    return tablica[y][x]->pobierzString();
 }
 
 int arkusz::zwrocRozX()
@@ -93,4 +117,8 @@ int arkusz::zwrocRozX()
 int arkusz::zwrocRozY()
 {
     return rozY;
+}
+bool arkusz::zwrocTyp(int x)
+{
+    return typy[x];
 }

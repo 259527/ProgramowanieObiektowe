@@ -1,17 +1,19 @@
 ///@file
 #pragma once
+#include "komorka.h"
 
 class arkusz
 {
-    int **tablica;
+    Cell ***tablica;
     int rozX;
     int rozY;
+    bool *typy;
 
 public:
-
+bool zwrocTyp(int x);
 arkusz(){}
-arkusz(int x, int y);
-int zwrocWartosc(int x, int y);
+arkusz(int x, int y, bool* typy);
+std::string zwrocWartosc(int x, int y);
 
 int zwrocRozX();
 int zwrocRozY();
@@ -22,9 +24,9 @@ int zwrocRozY();
 * Funkcja modyfikuje rozmiar tablicy
 * Wartości modyfikowanej tablicy zostają zachowane wraz z redukcją bądź rozszerzeniem * * * * rozmiaru
 *
-* @param[in,out] tablica modyfikowana tablica
-* @param[in,out] rozmiarX szerokość tablicy przed zmianą
-* @param[in,out] rozmiarY wysokośc tablicy przed zmianą
+* @param[in] tablica modyfikowana tablica
+* @param[in] rozmiarX szerokość tablicy przed zmianą
+* @param[in] rozmiarY wysokośc tablicy przed zmianą
 * @param[in] nowyrozX nowa szerokość tablicy
 * @param[in] nowyrozY nowa wysokość tablicy
 */
@@ -41,7 +43,7 @@ int zwrocRozY();
 * @param[in] y wiersz
 * @param[in] n wartość
 */
-    int modWartosc(int x, int y, int n);
+    int modWartosc(int x, int y, std::string n);
 };
 
 /**
@@ -65,6 +67,7 @@ void wprowadzWartosc(int **tablica, int rozX, int rozY);
 * @param[in] rozmiarY wysokość nowej tablicy
 * @return Nowa tablica
 */
-int **stworzTablice(int rozX, int rozY);
+Cell ***stworzTablice(int rozX, int rozY, bool* typy);
 
-int stworzArkusz(int rozmiarX, int rozmiarY, arkusz *tablica);
+int stworzArkusz(int rozmiarX, int rozmiarY, arkusz *tablica, bool *typy);
+
